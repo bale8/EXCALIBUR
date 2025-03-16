@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excalibur</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('saber.jpg'); /* Arkaplan resmi */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: auto; /* Varsayılan imleç */
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .video-container {
+            position: relative;
+            display: inline-block;
+        }
+        video {
+            border: none;
+            display: block;
+            width: 640px;
+            height: 360px;
+        }
+        .led-effect {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 660px;
+            height: 380px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 5px rgba(255, 223, 0, 1);
+            animation: ledAnimation 2s infinite linear;
+        }
+        @keyframes ledAnimation {
+            0% { box-shadow: 0 0 20px 5px rgba(255, 223, 0, 1); }
+            25% { box-shadow: 0 0 25px 10px rgba(255, 183, 0, 0.8); }
+            50% { box-shadow: 0 0 30px 15px rgba(255, 223, 0, 1); }
+            75% { box-shadow: 0 0 25px 10px rgba(255, 183, 0, 0.8); }
+            100% { box-shadow: 0 0 20px 5px rgba(255, 223, 0, 1); }
+        }
+        .discord-logo {
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        .discord-logo img {
+            width: 50px;
+            height: 50px;
+            filter: invert(87%) sepia(34%) saturate(517%) hue-rotate(359deg) brightness(95%) contrast(87%);
+        }
+        #bale {
+            display: none;
+            margin-top: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .bale-container {
+            position: absolute;
+            right: 12%; /* Daha sağa kaydırıldı */
+            top: 15%; /* Biraz yukarı taşındı */
+            cursor: pointer;
+            transition: transform 0.6s ease-in-out;
+        }
+        .bale-container img {
+            width: 240px;
+            height: auto;
+        }
+        .bale-container.flipped {
+            transform: rotateY(180deg);
+        }
+        .bale-text {
+            display: none;
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 350px; /* Daha geniş hale getirildi */
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+            overflow-wrap: break-word;
+        }
+
+        /* Responsive Tasarım İçin Eklenen Stiller */
+        @media only screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            video {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+            }
+
+            .led-effect {
+                width: 100%;
+                height: auto;
+                max-width: 420px;
+                top: -5px;
+                left: -5px;
+            }
+
+            .bale-container {
+                position: static;
+                margin-top: 20px;
+                text-align: center;
+            }
+
+            .bale-container img {
+                width: 180px;
+            }
+
+            .bale-text {
+                width: 90%;
+                font-size: 12px;
+                top: 100%;
+            }
+
+            .discord-logo {
+                margin-top: 10px;
+            }
+
+            .discord-logo img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            video {
+                max-width: 300px;
+            }
+
+            .led-effect {
+                max-width: 320px;
+            }
+
+            .bale-container img {
+                width: 150px;
+            }
+
+            .bale-text {
+                width: 100%;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="video-container">
+            <div class="led-effect"></div>
+            <video width="640" height="360" controls autoplay>
+                <source src="EXCALIBUR.mp4" type="video/mp4">
+                Tarayıcınız video formatını desteklemiyor.
+            </video>
+        </div>
+        <div class="bale-container" onclick="flipBale()">
+            <img src="garethbale.png" alt="Gareth Bale">
+            <div class="bale-text" id="baleText">
+                Gareth Bale is a retired Welsh professional footballer, widely regarded as one of the best wingers of his generation. Born on July 16, 1989, in Cardiff, Wales, he gained fame for his incredible speed, dribbling, powerful left foot, and ability to score stunning goals from long range.<br><br>
+                <strong>Career Highlights:</strong><br>
+                • Southampton (2006–2007) – Started his professional career as a left-back.<br>
+                • Tottenham Hotspur (2007–2013, 2020–2021) – Developed into a world-class winger, winning the PFA Player of the Year award twice.<br>
+                • Real Madrid (2013–2022) – Won five UEFA Champions League titles and played a key role in major victories, including his famous bicycle kick goal in the 2018 UCL final against Liverpool.<br>
+                • Los Angeles FC (2022) – Brief stint in the MLS, where he won the MLS Cup before retiring in January 2023.<br>
+                • Wales National Team (2006–2022) – Led Wales to their first Euro 2016 semi-finals, captained the team in their first World Cup in 64 years (2022), and became Wales' all-time top scorer.<br><br>
+                Despite injuries affecting his later career, Bale remains an iconic figure in Welsh football history. After retiring, he has been involved in golf, a sport he's passionate about.
+            </div>
+        </div>
+    </div>
+
+    <div class="discord-logo" onclick="showText()">
+        <img src="discord-logo.png" alt="Discord">
+    </div>
+    <div id="bale">.0bale</div>
+
+    <script>
+        function showText() {
+            var text = document.getElementById("bale");
+            text.style.display = text.style.display === "none" ? "block" : "none";
+        }
+
+        function flipBale() {
+            var bale = document.querySelector(".bale-container");
+            var text = document.getElementById("baleText");
+            bale.classList.toggle("flipped");
+            text.style.display = text.style.display === "none" ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
